@@ -36,43 +36,43 @@ implementation
 
 {$R *.dfm}
 
-procedure TFormMain.ButtonCountClick(Sender: TObject); // задаю размер графа(матрицы смежности)
+procedure TFormMain.ButtonCountClick(Sender: TObject); // Р·Р°РґР°СЋ СЂР°Р·РјРµСЂ РіСЂР°С„Р°(РјР°С‚СЂРёС†С‹ СЃРјРµР¶РЅРѕСЃС‚Рё)
 begin
   if not TryStrToInt(EditCount.Text, count) then
-    ShowMessage('Неверно введено кол-во вершин')
+    ShowMessage('РќРµРІРµСЂРЅРѕ РІРІРµРґРµРЅРѕ РєРѕР»-РІРѕ РІРµСЂС€РёРЅ');
   else
     count:= StrToInt(EditCount.Text);
 end;
 
-procedure TFormMain.ButtonGridClick(Sender: TObject); // заполнение матрицы смежности
+procedure TFormMain.ButtonGridClick(Sender: TObject); // Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°С‚СЂРёС†С‹ СЃРјРµР¶РЅРѕСЃС‚Рё
 var
   i,j:integer;
 begin
   StringGrid1.ColCount:= count;
   StringGrid1.RowCount:= count;
   for i:=0 to count-1 do
-    StringGrid1.Cells[i,i]:= IntToStr(0);  // главная диагональ - нули
+    StringGrid1.Cells[i,i]:= IntToStr(0);  // РіР»Р°РІРЅР°СЏ РґРёР°РіРѕРЅР°Р»СЊ - РЅСѓР»Рё
   for i:=0 to count-1 do
     for j:= i+1 to count-1 do
     begin
       StringGrid1.Cells[i,j]:= IntToStr(Random(10));
       if StringGrid1.Cells[i,j] = '0' then
-        StringGrid1.Cells[i,j]:= IntToStr(-1); // если нет общей дуги, то значение ячейки = -1
+        StringGrid1.Cells[i,j]:= IntToStr(-1); // РµСЃР»Рё РЅРµС‚ РѕР±С‰РµР№ РґСѓРіРё, С‚Рѕ Р·РЅР°С‡РµРЅРёРµ СЏС‡РµР№РєРё = -1
       StringGrid1.Cells[j,i]:= StringGrid1.Cells[i,j];
     end;
 end;
 
 procedure TFormMain.ButtonGoClick(Sender: TObject);
 var
-  A:array of array of longint; // матрица смежности
-  B:array of boolean;         // список отмеченных вершин
-  C:array of longint;        //  кратчайшие расстояния
+  A:array of array of longint; // РјР°С‚СЂРёС†Р° СЃРјРµР¶РЅРѕСЃС‚Рё
+  B:array of boolean;         // СЃРїРёСЃРѕРє РѕС‚РјРµС‡РµРЅРЅС‹С… РІРµСЂС€РёРЅ
+  C:array of longint;        //  РєСЂР°С‚С‡Р°Р№С€РёРµ СЂР°СЃСЃС‚РѕСЏРЅРёСЏ
   i,j,m,q,v:integer;
 begin
   if not TryStrToInt(EditTop.Text, q) then
-    ShowMessage('Неверно введена исходная вершина')
+    ShowMessage('РќРµРІРµСЂРЅРѕ РІРІРµРґРµРЅР° РёСЃС…РѕРґРЅР°СЏ РІРµСЂС€РёРЅР°');
   else
-    q:= StrToInt(EditTop.Text);  // исходная вершина
+    q:= StrToInt(EditTop.Text);  // РёСЃС…РѕРґРЅР°СЏ РІРµСЂС€РёРЅР°
   if (q < 1) or (q > count) then
     q:= 1;
 
@@ -87,7 +87,7 @@ begin
     B[i]:= False;
   for i:=0 to count-1 do
     C[i]:=10000;
-  C[q]:= 0;  // расстояние до начальной вершины
+  C[q]:= 0;  // СЂР°СЃСЃС‚РѕСЏРЅРёРµ РґРѕ РЅР°С‡Р°Р»СЊРЅРѕР№ РІРµСЂС€РёРЅС‹
   for i:=0 to count-1 do
   begin
     m:=10000;
