@@ -39,7 +39,7 @@ implementation
 procedure TFormMain.ButtonCountClick(Sender: TObject); // задаю размер графа(матрицы смежности)
 begin
   if not TryStrToInt(EditCount.Text, count) then
-    ShowMessage('Неверно введено кол-во вершин');
+    ShowMessage('Неверно введено кол-во вершин')
   else
     count:= StrToInt(EditCount.Text);
 end;
@@ -70,11 +70,11 @@ var
   i,j,m,q,v:integer;
 begin
   if not TryStrToInt(EditTop.Text, q) then
-    ShowMessage('Неверно введена исходная вершина');
+    ShowMessage('Неверно введена исходная вершина')
   else
     q:= StrToInt(EditTop.Text);  // исходная вершина
-  if (q < 1) or (q > count) then
-    q:= 1;
+  if (q < 0) or (q > count) then
+    q:= 0;
 
   SetLength(A,count,count);
   for i:=0 to count-1 do
