@@ -64,9 +64,9 @@ end;
 
 procedure TFormMain.ButtonGoClick(Sender: TObject);
 var
-  A:array of array of longint; // матрица смежности
+  A:array of array of integer; // матрица смежности
   B:array of boolean;         // список отмеченных вершин
-  C:array of longint;        //  кратчайшие расстояния
+  C:array of integer;        //  кратчайшие расстояния
   i,j,m,q,v:integer;
 begin
   if not TryStrToInt(EditTop.Text, q) then
@@ -79,7 +79,7 @@ begin
   SetLength(A,count,count);
   for i:=0 to count-1 do
     for j:=0 to count-1 do
-      A[j,i]:= StrToIntDef(StringGrid1.Cells[i,j],-1);
+      A[j,i]:= StrToInt(StringGrid1.Cells[i,j]);
 
   SetLength(B,count);
   SetLength(C,count);
