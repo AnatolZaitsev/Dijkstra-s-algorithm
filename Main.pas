@@ -79,7 +79,7 @@ begin
   SetLength(A,count,count);
   for i:=0 to count-1 do
     for j:=0 to count-1 do
-      A[j,i]:= StrToInt(StringGrid1.Cells[i,j]);
+      A[i,j]:= StrToInt(StringGrid1.Cells[i,j]);
 
   SetLength(B,count);
   SetLength(C,count);
